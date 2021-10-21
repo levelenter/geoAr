@@ -15,7 +15,7 @@ export default defineComponent({
     const lng = ref(new Number(route.query.lng));
     const messagePass = () => {
       const frame = document.querySelector("#ar_frame") as HTMLIFrameElement;
-      frame.contentWindow?.postMessage({ lat: lat, lng: lng });
+      frame.contentWindow?.postMessage({ lat: lat, lng: lng }, "*");
       console.log("passed");
     };
     return {
