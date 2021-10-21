@@ -1,0 +1,57 @@
+<html style="height: 100%">
+  <script
+    type="text/javascript"
+    src="https://aframe.io/releases/1.2.0/aframe.min.js"
+  ></script>
+  <script
+    type="text/javascript"
+    src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"
+  ></script>
+  <body style="height: 100%">
+    <a-scene
+      style="height: 100%"
+      embedded=""
+      blockvrock-init=""
+      blockvrock-edited-code=""
+      vr-mode-handler=""
+      renderer="colorManagement: true"
+      vr-mode-ui="enabled: false"
+      ui-controller="rig:#rig"
+      arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3;detectionMode:mono_and_matrix; debugUIEnabled: false;"
+      artoolkit=""
+    >
+      <a-box
+        id="targetObject"
+        color="#68f5d7"
+        position="0 0 0"
+        gps-entity-place="latitude:0; longitude:0;"
+      ></a-box>
+      <a-camera
+        gps-camera="maxDistance:30"
+        cursor="rayOrigin: mouse; fuse:false"
+        rotation-reader
+      >
+      </a-camera>
+      <!-- <a-marker-camera rotation-reader="">
+        <a-marker emitevents="true" cursor="rayOrigin: mouse;fuse:false">
+          <a-box id="block" color="#68f5d7" position="0 0 0"></a-box>
+        </a-marker>
+      </a-marker-camera> -->
+    </a-scene>
+    <script>
+      window.addEventListener("message", (event) => {
+        if (!event.data) {
+          return;
+        }
+        const lat = event.data.lat;
+        const lng = event.data.lng;
+        const targetObject = document.getElementById("targetObject");
+        targetObject.setAttribute(
+          "gps-entity-place",
+          `"latitude:${lat}; longitude:${lng};"`
+        );
+        parent.window.console.log("child ");
+      });
+    </script>
+  </body>
+</html>
