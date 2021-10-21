@@ -24,7 +24,7 @@
         id="targetObject"
         color="#68f5d7"
         position="0 0 0"
-        gps-entity-place="latitude:0; longitude:0;"
+        gps-entity-place="latitude:34.67439962212148; longitude:135.49142887177564;"
       ></a-box>
       <a-camera
         gps-camera="maxDistance:30"
@@ -48,9 +48,9 @@
         const targetObject = document.getElementById("targetObject");
         targetObject.setAttribute(
           "gps-entity-place",
-          `"latitude:${lat}; longitude:${lng};"`
+          `latitude:${lat}; longitude:${lng};`
         );
-        parent.window.console.log("child ");
+        parent.window.console.log(`latitude:${lat}; longitude:${lng};`);
       });
     </script>
   </body>
