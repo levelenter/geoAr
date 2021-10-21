@@ -1,6 +1,12 @@
 <template>
-  <div class="home">home</div>
-  <div id="map" style="height: 30rem" class="w-100"></div>
+  <div class="home mt-3">
+    <p>map</p>
+    <p>マップをクリックして物体を配置してください。</p>
+  </div>
+
+  <div class="border border-secondary rounded m-3">
+    <div id="map" style="height: 30rem" class="w-100"></div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -61,6 +67,11 @@ export default defineComponent({
             map
           );
           map.panTo(marker.getPosition()!);
+          console.log({ lat: latlng.lat(), lng: latlng.lng() });
+          router.push({
+            name: "GeoAR",
+            query: { lat: latlng.lat(), lng: latlng.lng() },
+          });
 
           /**
            * マーカーをクリックした時
