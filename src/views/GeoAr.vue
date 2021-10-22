@@ -1,14 +1,19 @@
 <template>
   <div class="h-100">
     <router-link to="/">Mapへもどる</router-link>
+    <button class="btn btn-link" @click="showQr">QR</button>
     <iframe id="ar_frame" class="h-100 w-100" src="ar.html" />
+    <qr-dialog />
   </div>
 </template>
 <script lang="ts">
+import { DialogIds } from "@/components/dialog/DialogIds";
 import { defineComponent, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-
+import { DialogHandlerCore } from "../components/dialog/DialogHandlerCore";
+import QrDialog from "../components/dialog/QrDialog.vue";
 export default defineComponent({
+  components: { QrDialog },
   setup() {
     const route = useRoute();
     const lat = ref("");
@@ -34,7 +39,11 @@ export default defineComponent({
         { immediate: true }
       );
     });
-    return {};
+    const showQr = () => {
+      console.log(DialogIds.qrdialog);
+      DialogHandlerCore.showDialog(DialogIds.qrdialog);
+    };
+    return { showQr };
   },
 });
 </script>

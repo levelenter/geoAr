@@ -18,19 +18,6 @@ import { useRouter } from "vue-router";
 export default defineComponent({
   setup: () => {
     const router = useRouter();
-    const loader = new Loader({
-      apiKey: "AIzaSyB9D412riHCmBqpyiNRTMCZWfTcK1EUyHM",
-      version: "weekly",
-    });
-    loader.load().then(() => {
-      const geocoder = new google.maps.Geocoder();
-
-      geocoder.geocode({ address: "東京都千代田区" }, (results, status) => {
-        if (status == "OK" && results![0].geometry?.location !== undefined) {
-          console.log(results![0].geometry?.location);
-        }
-      });
-    });
 
     function addMarker(place: any, title: any, map: any) {
       let iconUrl = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
